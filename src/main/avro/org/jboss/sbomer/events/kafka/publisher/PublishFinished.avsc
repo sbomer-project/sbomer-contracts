@@ -1,0 +1,47 @@
+{
+  "namespace": "org.jboss.sbomer.events.kafka.publisher",
+  "type": "record",
+  "name": "PublishFinished",
+  "doc": "Published by an individual publisher worker after it successfully completes its publishing task for a batch.",
+  "fields": [
+    {
+      "name": "context",
+      "type": "org.jboss.sbomer.events.kafka.common.ContextSpec",
+      "doc": "The standard event metadata."
+    },
+    {
+      "name": "data",
+      "type": {
+        "name": "PublishFinishedData",
+        "type": "record",
+        "fields": [
+          {
+            "name": "requestId",
+            "type": "string",
+            "doc": "The unique ID of the original batch request that was published."
+          },
+          {
+            "name": "publisher",
+            "type": "org.jboss.sbomer.events.kafka.common.PublisherSpec",
+            "doc": "The specific publisher that just completed its work. This identifies the task."
+          },
+          {
+            "name": "publishedSbomUrls",
+            "type": [
+              "null",
+              { "type": "array", "items": "string" }
+            ],
+            "default": null,
+            "doc": "An optional list of URLs pointing to the newly published SBOMs in the external system (e.g., a URL in a dependency checker)."
+          },
+          {
+            "name": "result",
+            "type": { "type": "map", "values": "string" },
+            "default": {},
+            "doc": "An optional map for *other* key-value metadata from the publish (e.g., 'analysisId: 12345')."
+          }
+        ]
+      }
+    }
+  ]
+}

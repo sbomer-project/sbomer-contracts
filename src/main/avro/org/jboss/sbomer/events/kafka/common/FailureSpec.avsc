@@ -1,0 +1,25 @@
+{
+  "namespace": "org.jboss.sbomer.events.kafka.common",
+  "type": "record",
+  "name": "FailureSpec",
+  "doc": "A reusable, standardized data structure that describes a processing failure.",
+  "fields": [
+    {
+      "name": "reason",
+      "type": "string",
+      "doc": "A concise, human-readable message explaining what went wrong (e.g., 'Failed to fetch build dependencies')."
+    },
+    {
+      "name": "errorCode",
+      "type": ["null", "string"],
+      "default": null,
+      "doc": "An optional, machine-readable error code for programmatic handling (e.g., 'ERR_GENERATION_FAILED', 'ERR_ENHANCEMENT_TIMEOUT')."
+    },
+    {
+      "name": "details",
+      "type": { "type": "map", "values": "string" },
+      "default": {},
+      "doc": "An optional map for additional, unstructured context about the error. Useful for logging or debugging (e.g., 'buildId: 12345', 'timeoutMs: 30000')."
+    }
+  ]
+}

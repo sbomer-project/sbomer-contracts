@@ -1,0 +1,43 @@
+{
+  "namespace": "org.jboss.sbomer.events.kafka.orchestration",
+  "type": "record",
+  "name": "EnhancementFinished",
+  "doc": "Published by the orchestrator *after* it has confirmed an enhancement step is complete (via an EnhancementUpdate). This signals the completion of one step in the recipe.",
+  "fields": [
+    {
+      "name": "context",
+      "type": "org.jboss.sbomer.events.kafka.common.ContextSpec",
+      "doc": "The standard event metadata."
+    },
+    {
+      "name": "data",
+      "type": {
+        "name": "EnhancementFinishedData",
+        "type": "record",
+        "fields": [
+          {
+            "name": "enhancementId",
+            "type": "string",
+            "doc": "The unique ID of the enhancement task that has just been completed."
+          },
+          {
+            "name": "generationId",
+            "type": "string",
+            "doc": "The unique ID of the parent generation task."
+          },
+          {
+            "name": "requestId",
+            "type": ["null", "string"],
+            "default": null,
+            "doc": "The unique ID of the original batch request."
+          },
+          {
+            "name":"enhancedSbomUrls",
+            "type": { "type": "array", "items": "string" },
+            "doc": "A list of URLs to the *final* enhanced SBOMs from this specific step."
+          }
+        ]
+      }
+    }
+  ]
+}

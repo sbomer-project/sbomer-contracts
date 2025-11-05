@@ -1,0 +1,48 @@
+{
+  "namespace": "org.jboss.sbomer.events.kafka.orchestration",
+  "type": "record",
+  "name": "EnhancementCreated",
+  "doc": "Event published by the orchestrator to trigger a single, specific SBOM enhancement task.",
+  "fields": [
+    {
+      "name": "context",
+      "type": "org.jboss.sbomer.events.kafka.common.ContextSpec",
+      "doc": "The standard event metadata."
+    },
+    {
+      "name": "data",
+      "type": {
+        "name": "EnhancementData",
+        "type": "record",
+        "fields": [
+          {
+            "name": "enhancementId",
+            "type": "string",
+            "doc": "The unique ID of the enhancement task."
+          },
+          {
+            "name": "generationId",
+            "type": "string",
+            "doc": "The unique ID of the generation task this enhancement belongs to. This is the primary correlation key."
+          },
+          {
+            "name": "requestId",
+            "type": ["null", "string"],
+            "default": null,
+            "doc": "The unique ID of the original batch request. For correlation and logging."
+          },
+          {
+            "name": "inputSbomUrls",
+            "type": { "type": "array", "items": "string" },
+            "doc": "The list of SBOM URLs from the *previous* step (generation or prior enhancement) that this enhancer should use as input."
+          },
+          {
+            "name": "enhancer",
+            "type": "org.jboss.sbomer.events.kafka.common.EnhancerSpec",
+            "doc": "The specific enhancer from the recipe that should be executed in this step."
+          }
+        ]
+      }
+    }
+  ]
+}

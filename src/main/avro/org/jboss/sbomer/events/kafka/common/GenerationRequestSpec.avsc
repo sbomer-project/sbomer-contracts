@@ -1,0 +1,34 @@
+{
+  "namespace": "org.jboss.sbomer.events.kafka.common",
+  "type": "record",
+  "name": "GenerationRequestSpec",
+  "doc": "A single, identifiable request to generate an SBOM for a specific target. This is the canonical record for a generation task.",
+  "fields": [
+    {
+      "name": "generationId",
+      "type": "string",
+      "doc": "The unique ID for this specific generation task. This will be the primary correlation ID for all subsequent events."
+    },
+    {
+      "name": "target",
+      "doc": "The specific target (build, image) for which the SBOM should be generated.",
+      "type": {
+        "name": "Target",
+        "type": "record",
+        "doc": "Defines the target for an SBOM generation.",
+        "fields": [
+          {
+            "name": "type",
+            "type": "string",
+            "doc": "The type of the target (e.g., 'BUILD', 'CONTAINER_IMAGE')."
+          },
+          {
+            "name": "identifier",
+            "type": "string",
+            "doc": "The unique identifier for the target within its type (e.g., a build ID, a container digest)."
+          }
+        ]
+      }
+    }
+  ]
+}

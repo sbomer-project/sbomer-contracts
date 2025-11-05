@@ -1,0 +1,57 @@
+{
+  "namespace": "org.jboss.sbomer.events.kafka.orchestration",
+  "type": "record",
+  "name": "RequestsFinished",
+  "doc": "Published by the orchestrator when all individual generation and enhancement tasks for a parent RequestId have been successfully completed.",
+  "fields": [
+    {
+      "name": "context",
+      "type": "org.jboss.sbomer.events.kafka.common.ContextSpec",
+      "doc": "The standard event metadata."
+    },
+    {
+      "name": "data",
+      "type": {
+        "name": "RequestsFinishedData",
+        "type": "record",
+        "fields": [
+          {
+            "name": "requestId",
+            "type": "string",
+            "doc": "The unique ID of the original batch request that is now complete."
+          },
+          {
+            "name": "publishers",
+            "doc": "The list of publishers (from the original RequestsCreated) that should handle these final SBOMs.",
+            "type": { "type": "array", "items": "org.jboss.sbomer.events.kafka.common.PublisherSpec" },
+            "default": []
+          },
+          {
+            "name": "completedGenerations",
+            "doc": "A list mapping each original generation request to its final set of SBOM URLs.",
+            "type": {
+              "type": "array",
+              "items": {
+                "name": "CompletedGeneration",
+                "type": "record",
+                "doc": "Maps a single generation request to its final results.",
+                "fields": [
+                  {
+                    "name": "generationRequest",
+                    "type": "org.jboss.sbomer.events.kafka.common.GenerationRequestSpec",
+                    "doc": "The original request, containing the generationId and target."
+                  },
+                  {
+                    "name": "finalSbomUrls",
+                    "doc": "A list of final, fully enhanced URLs for this generation's SBOMs.",
+                    "type": { "type": "array", "items": "string" }
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

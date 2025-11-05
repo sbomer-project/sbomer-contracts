@@ -1,0 +1,41 @@
+{
+  "namespace": "org.jboss.sbomer.events.kafka.common",
+  "type": "record",
+  "name": "ContextSpec",
+  "doc": "The standardized metadata envelope for all SBOMer events.",
+  "fields": [
+    {
+      "name": "eventId",
+      "type": "string",
+      "doc": "A unique identifier for this specific event instance (e.g., a UUID)."
+    },
+    {
+      "name": "type",
+      "type": "string",
+      "doc": "A machine-readable string identifying the event type, e.g., 'GenerationCreated', 'EnhancementFinished'. This allows consumers to route the event correctly."
+    },
+    {
+      "name": "source",
+      "type": ["null", "string"],
+      "default": null,
+      "doc": "The source or service that originated this event (e.g., 'sbom-service', 'sbomer-generator')."
+    },
+    {
+      "name": "eventVersion",
+      "type": "string",
+      "default": "1.0",
+      "doc": "The version of the business logic or contract this event represents. This is distinct from the Avro schema version managed by the registry."
+    },
+    {
+      "name": "timestamp",
+      "type": { "type": "long", "logicalType": "timestamp-millis" },
+      "doc": "The time the event was generated, in UTC milliseconds since the epoch."
+    },
+    {
+      "name": "correlationId",
+      "type": ["null", "string"],
+      "default": null,
+      "doc": "An optional ID to correlate a chain of events across a single workflow (e.g., the parent RequestId)."
+    }
+  ]
+}

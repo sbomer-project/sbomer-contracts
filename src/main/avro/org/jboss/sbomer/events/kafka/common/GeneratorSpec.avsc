@@ -1,0 +1,24 @@
+{
+  "namespace": "org.jboss.sbomer.events.kafka.common",
+  "type": "record",
+  "name": "GeneratorSpec",
+  "doc": "A reusable record that defines a specific Generator, its version, and its opaque configuration.",
+  "fields": [
+    {
+      "name": "name",
+      "type": "string",
+      "doc": "The machine-readable name of the generator (e.g., 'syft-generator')."
+    },
+    {
+      "name": "version",
+      "type": "string",
+      "doc": "The version of the generator to be used."
+    },
+    {
+      "name": "options",
+      "type": { "type": "map", "values": "string" },
+      "default": {},
+      "doc": "An optional map of key-value configuration options. The generator service is responsible for interpreting these opaque string values."
+    }
+  ]
+}

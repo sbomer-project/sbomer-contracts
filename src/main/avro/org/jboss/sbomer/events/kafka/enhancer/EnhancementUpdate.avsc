@@ -1,0 +1,53 @@
+{
+  "namespace": "org.jboss.sbomer.events.kafka.enhancer",
+  "type": "record",
+  "name": "EnhancementUpdate",
+  "doc": "Event published by an enhancer to update the status of a specific SBOM enhancement task. This is the primary 'heartbeat' and 'result' event from the worker.",
+  "fields": [
+    {
+      "name": "context",
+      "type": "org.jboss.sbomer.events.kafka.common.ContextSpec",
+      "doc": "The standard event metadata."
+    },
+    {
+      "name": "data",
+      "type": {
+        "name": "EnhancementUpdateData",
+        "type": "record",
+        "fields": [
+          {
+            "name": "enhancementId",
+            "type": "string",
+            "doc": "The unique ID of the enhancement task being updated. This is the primary correlation key."
+          },
+          {
+            "name": "status",
+            "type": "string",
+            "doc": "The new status of the enhancement task. Known values: 'NEW', 'SCHEDULED', 'ENHANCING', 'FINISHED', 'FAILED'."
+          },
+          {
+            "name": "resultCode",
+            "type": ["null", "int"],
+            "default": null,
+            "doc": "The final result code, set only when Status is 'FINISHED' or 'FAILED'."
+          },
+          {
+            "name": "reason",
+            "type": ["null", "string"],
+            "default": null,
+            "doc": "A human-readable reason, set only when Status is 'FAILED'."
+          },
+          {
+            "name": "enhancedSbomUrls",
+            "type": [
+              "null",
+              { "type": "array", "items": "string" }
+            ],
+            "default": null,
+            "doc": "A list of URLs to the *enhanced* SBOMs, set only when Status is 'FINISHED' and ResultCode is 0 (SUCCESS)."
+          }
+        ]
+      }
+    }
+  ]
+}
