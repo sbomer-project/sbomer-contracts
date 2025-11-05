@@ -1,0 +1,39 @@
+# .github/workflows/validate.yml
+
+name: Validate Avro Schemas
+
+# This workflow runs on all pull requests
+on:
+  pull_request:
+  push:
+    branches:
+      - main  # Also run on merges to main, just in case
+
+jobs:
+  validate-schemas:
+    name: Run Maven Validation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      # Set up Java 11
+      - name: Set up JDK 11
+        uses: actions/setup-java@v4
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+
+      # It caches downloaded dependencies to speed up future builds.
+      - name: Cache Maven packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      #Run the validation. If it fails, the whole PR check fails.
+      - name: Validate and compile schemas
+        run: mvn clean compile
