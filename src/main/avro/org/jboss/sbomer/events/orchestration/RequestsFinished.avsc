@@ -1,12 +1,12 @@
 {
-  "namespace": "org.jboss.sbomer.events.kafka.orchestration",
+  "namespace": "org.jboss.sbomer.events.orchestration",
   "type": "record",
   "name": "RequestsFinished",
   "doc": "Published by the orchestrator when all individual generation and enhancement tasks for a parent RequestId have been successfully completed.",
   "fields": [
     {
       "name": "context",
-      "type": "org.jboss.sbomer.events.kafka.common.ContextSpec",
+      "type": "org.jboss.sbomer.events.common.ContextSpec",
       "doc": "The standard event metadata."
     },
     {
@@ -23,7 +23,7 @@
           {
             "name": "publishers",
             "doc": "The list of publishers (from the original RequestsCreated) that should handle these final SBOMs.",
-            "type": { "type": "array", "items": "org.jboss.sbomer.events.kafka.common.PublisherSpec" },
+            "type": { "type": "array", "items": "org.jboss.sbomer.events.common.PublisherSpec" },
             "default": []
           },
           {
@@ -38,7 +38,7 @@
                 "fields": [
                   {
                     "name": "generationRequest",
-                    "type": "org.jboss.sbomer.events.kafka.common.GenerationRequestSpec",
+                    "type": "org.jboss.sbomer.events.common.GenerationRequestSpec",
                     "doc": "The original request, containing the generationId and target."
                   },
                   {

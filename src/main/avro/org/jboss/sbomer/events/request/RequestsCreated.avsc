@@ -1,12 +1,12 @@
 {
-  "namespace": "org.jboss.sbomer.events.kafka.request",
+  "namespace": "org.jboss.sbomer.events.request",
   "type": "record",
   "name": "RequestsCreated",
   "doc": "Event published by an intake service ('handler') when a new batch of SBOM generation requests is created from user input or an external system.",
   "fields": [
     {
       "name": "context",
-      "type": "org.jboss.sbomer.events.kafka.common.ContextSpec",
+      "type": "org.jboss.sbomer.events.common.ContextSpec",
       "doc": "The standard event metadata."
     },
     {
@@ -23,13 +23,13 @@
           },
           {
             "name": "publishers",
-            "type": { "type": "array", "items": "org.jboss.sbomer.events.kafka.common.PublisherSpec" },
+            "type": { "type": "array", "items": "org.jboss.sbomer.events.common.PublisherSpec" },
             "default": [],
             "doc": "An optional list of publishers that should be invoked *after* all generation requests in this batch are successfully completed and enhanced."
           },
           {
             "name": "generationRequests",
-            "type": { "type": "array", "items": "org.jboss.sbomer.events.kafka.common.GenerationRequestSpec" },
+            "type": { "type": "array", "items": "org.jboss.sbomer.events.common.GenerationRequestSpec" },
             "doc": "The list of individual generation tasks to be processed. Each has its own unique generationId."
           }
         ]

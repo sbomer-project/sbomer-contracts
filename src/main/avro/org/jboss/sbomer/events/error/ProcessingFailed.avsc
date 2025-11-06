@@ -1,12 +1,12 @@
 {
-  "namespace": "org.jboss.sbomer.events.kafka.error",
+  "namespace": "org.jboss.sbomer.events.error",
   "type": "record",
   "name": "ProcessingFailed",
   "doc": "A general-purpose event published when a service encounters an unrecoverable error during message processing.",
   "fields": [
     {
       "name": "context",
-      "type": "org.jboss.sbomer.events.kafka.common.ContextSpec",
+      "type": "org.jboss.sbomer.events.common.ContextSpec",
       "doc": "The standard event metadata."
     },
     {
@@ -18,7 +18,7 @@
           {
             "name": "failure",
             "doc": "The standardized details of the failure.",
-            "type": "org.jboss.sbomer.events.kafka.common.FailureSpec"
+            "type": "org.jboss.sbomer.events.common.FailureSpec"
           },
           {
             "name": "sourceEvent",

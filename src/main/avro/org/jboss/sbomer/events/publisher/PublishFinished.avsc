@@ -1,12 +1,12 @@
 {
-  "namespace": "org.jboss.sbomer.events.kafka.publisher",
+  "namespace": "org.jboss.sbomer.events.publisher",
   "type": "record",
   "name": "PublishFinished",
   "doc": "Published by an individual publisher worker after it successfully completes its publishing task for a batch.",
   "fields": [
     {
       "name": "context",
-      "type": "org.jboss.sbomer.events.kafka.common.ContextSpec",
+      "type": "org.jboss.sbomer.events.common.ContextSpec",
       "doc": "The standard event metadata."
     },
     {
@@ -22,7 +22,7 @@
           },
           {
             "name": "publisher",
-            "type": "org.jboss.sbomer.events.kafka.common.PublisherSpec",
+            "type": "org.jboss.sbomer.events.common.PublisherSpec",
             "doc": "The specific publisher that just completed its work. This identifies the task."
           },
           {

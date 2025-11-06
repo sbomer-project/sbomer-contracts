@@ -1,12 +1,12 @@
 {
-  "namespace": "org.jboss.sbomer.events.kafka.orchestration",
+  "namespace": "org.jboss.sbomer.events.orchestration",
   "type": "record",
   "name": "EnhancementFinished",
   "doc": "Published by the orchestrator *after* it has confirmed an enhancement step is complete (via an EnhancementUpdate). This signals the completion of one step in the recipe.",
   "fields": [
     {
       "name": "context",
-      "type": "org.jboss.sbomer.events.kafka.common.ContextSpec",
+      "type": "org.jboss.sbomer.events.common.ContextSpec",
       "doc": "The standard event metadata."
     },
     {

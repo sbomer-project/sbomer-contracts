@@ -4,7 +4,7 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.jboss.sbomer.events.kafka</groupId>
+    <groupId>org.jboss.sbomer.events</groupId>
     <artifactId>sbomer-contracts</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
@@ -41,7 +41,7 @@
                         <sourceDirectory>${project.basedir}/src/main/avro/</sourceDirectory>
                         
                         <imports>
-                            <import>${project.basedir}/src/main/avro/org/jboss/sbomer/events/kafka/common/</import>
+                            <import>${project.basedir}/src/main/avro/org/jboss/sbomer/events/common/</import>
                         </imports>
                         
                         <excludes>

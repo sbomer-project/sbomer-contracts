@@ -1,29 +1,29 @@
 {
-  "namespace": "org.jboss.sbomer.events.kafka.enhancer",
+  "namespace": "org.jboss.sbomer.events.generator",
   "type": "record",
-  "name": "EnhancementUpdate",
-  "doc": "Event published by an enhancer to update the status of a specific SBOM enhancement task. This is the primary 'heartbeat' and 'result' event from the worker.",
+  "name": "GenerationUpdate",
+  "doc": "Event published by a generator worker to update the status of a specific SBOM generation task. This is the primary 'heartbeat' and 'result' event from the worker.",
   "fields": [
     {
       "name": "context",
-      "type": "org.jboss.sbomer.events.kafka.common.ContextSpec",
+      "type": "org.jboss.sbomer.events.common.ContextSpec",
       "doc": "The standard event metadata."
     },
     {
       "name": "data",
       "type": {
-        "name": "EnhancementUpdateData",
+        "name": "GenerationUpdateData",
         "type": "record",
         "fields": [
           {
-            "name": "enhancementId",
+            "name": "generationId",
             "type": "string",
-            "doc": "The unique ID of the enhancement task being updated. This is the primary correlation key."
+            "doc": "The unique ID of the generation task being updated. This is the primary correlation key."
           },
           {
             "name": "status",
             "type": "string",
-            "doc": "The new status of the enhancement task. Known values: 'NEW', 'SCHEDULED', 'ENHANCING', 'FINISHED', 'FAILED'."
+            "doc": "The new status of the generation task. Known values: 'NEW', 'SCHEDULED', 'INITIALIZING', 'INITIALIZED', 'GENERATING', 'FINISHED', 'FAILED'."
           },
           {
             "name": "resultCode",
@@ -38,13 +38,13 @@
             "doc": "A human-readable reason, set only when Status is 'FAILED'."
           },
           {
-            "name": "enhancedSbomUrls",
+            "name": "baseSbomUrls",
             "type": [
               "null",
               { "type": "array", "items": "string" }
             ],
             "default": null,
-            "doc": "A list of URLs to the *enhanced* SBOMs, set only when Status is 'FINISHED' and ResultCode is 0 (SUCCESS)."
+            "doc": "A list of URLs to the *base* (un-enhanced) SBOMs, set only when Status is 'FINISHED' and ResultCode is 0 (SUCCESS)."
           }
         ]
       }
