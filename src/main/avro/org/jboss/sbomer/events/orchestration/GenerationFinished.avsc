@@ -1,12 +1,12 @@
 {
-  "namespace": "org.jboss.sbomer.events.kafka.orchestration",
+  "namespace": "org.jboss.sbomer.events.orchestration",
   "type": "record",
   "name": "GenerationFinished",
   "doc": "Published by the orchestrator *after* it has confirmed base generation is complete (via a GenerationUpdate). This signals the completion of the *first* step in the recipe.",
   "fields": [
     {
       "name": "context",
-      "type": "org.jboss.sbomer.events.kafka.common.ContextSpec",
+      "type": "org.jboss.sbomer.events.common.ContextSpec",
       "doc": "The standard event metadata."
     },
     {

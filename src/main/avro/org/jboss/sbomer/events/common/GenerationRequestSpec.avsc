@@ -1,5 +1,5 @@
 {
-  "namespace": "org.jboss.sbomer.events.kafka.common",
+  "namespace": "org.jboss.sbomer.events.common",
   "type": "record",
   "name": "GenerationRequestSpec",
   "doc": "A single, identifiable request to generate an SBOM for a specific target. This is the canonical record for a generation task.",

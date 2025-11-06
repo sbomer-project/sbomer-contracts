@@ -1,12 +1,12 @@
 {
-  "namespace": "org.jboss.sbomer.events.kafka.orchestration",
+  "namespace": "org.jboss.sbomer.events.orchestration",
   "type": "record",
   "name": "EnhancementCreated",
   "doc": "Event published by the orchestrator to trigger a single, specific SBOM enhancement task.",
   "fields": [
     {
       "name": "context",
-      "type": "org.jboss.sbomer.events.kafka.common.ContextSpec",
+      "type": "org.jboss.sbomer.events.common.ContextSpec",
       "doc": "The standard event metadata."
     },
     {
@@ -38,7 +38,7 @@
           },
           {
             "name": "enhancer",
-            "type": "org.jboss.sbomer.events.kafka.common.EnhancerSpec",
+            "type": "org.jboss.sbomer.events.common.EnhancerSpec",
             "doc": "The specific enhancer from the recipe that should be executed in this step."
           }
         ]

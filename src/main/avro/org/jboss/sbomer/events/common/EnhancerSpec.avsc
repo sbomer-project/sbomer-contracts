@@ -1,5 +1,5 @@
 {
-  "namespace": "org.jboss.sbomer.events.kafka.common",
+  "namespace": "org.jboss.sbomer.events.common",
   "type": "record",
   "name": "EnhancerSpec",
   "doc": "A reusable record that defines a specific Enhancer, its version, and its opaque configuration.",

@@ -1,5 +1,5 @@
 {
-  "namespace": "org.jboss.sbomer.events.kafka.common",
+  "namespace": "org.jboss.sbomer.events.common",
   "type": "record",
   "name": "ContextSpec",
   "doc": "The standardized metadata envelope for all SBOMer events.",

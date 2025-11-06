@@ -1,12 +1,12 @@
 {
-  "namespace": "org.jboss.sbomer.events.kafka.orchestration",
+  "namespace": "org.jboss.sbomer.events.orchestration",
   "type": "record",
   "name": "GenerationCreated",
   "doc": "Event published by the orchestrator to trigger a single, specific SBOM generation task with a fully resolved recipe.",
   "fields": [
     {
       "name": "context",
-      "type": "org.jboss.sbomer.events.kafka.common.ContextSpec",
+      "type": "org.jboss.sbomer.events.common.ContextSpec",
       "doc": "The standard event metadata."
     },
     {
@@ -23,7 +23,7 @@
           },
           {
             "name": "generationRequest",
-            "type": "org.jboss.sbomer.events.kafka.common.GenerationRequestSpec",
+            "type": "org.jboss.sbomer.events.common.GenerationRequestSpec",
             "doc": "The canonical record for the generation task, containing the generationId and target."
           },
           {
@@ -35,12 +35,12 @@
               "fields": [
                 {
                   "name": "generator",
-                  "type": "org.jboss.sbomer.events.kafka.common.GeneratorSpec",
+                  "type": "org.jboss.sbomer.events.common.GeneratorSpec",
                   "doc": "The specific generator to be run."
                 },
                 {
                   "name": "enhancers",
-                  "type": { "type": "array", "items": "org.jboss.sbomer.events.kafka.common.EnhancerSpec" },
+                  "type": { "type": "array", "items": "org.jboss.sbomer.events.common.EnhancerSpec" },
                   "default": [],
                   "doc": "An ordered list of enhancers to be run sequentially after generation."
                 }
